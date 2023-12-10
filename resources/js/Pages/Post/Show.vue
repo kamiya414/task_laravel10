@@ -1,6 +1,6 @@
 <script setup>
   import Authenticated from '@/Layouts/AuthenticatedLayout.vue';
-  import {Link} from '@inertiajs/vue3';
+  import {Link} from '@inertiajs/inertia-vue3';
 
   const {post} = defineProps({
       post: Object
@@ -16,21 +16,25 @@
         </template>
 
         <div class="w-1/4 mx-auto mt-8 space-y-4">
-         
             <div>
                 <h1>{{ post.title }}</h1>
                 <p>{{ post.created_at }}</p>
-           </div>
+            </div>
 
             <div>
                 <h3>本文</h3>
                 <p>{{ post.body }}</p>
             </div>
 
+            <div>
+                <p>カテゴリー：{{ post.category.name }}</p>
+            </div>
+
             <div class="space-x-3">
                 <Link :href="route('post.index')">戻る</Link>
-                <Link :href="route('post.edit', { id: post.id })">Edit</Link>
+                <Link :href="route('post.edit', { id: post.id })" >Edit</Link>
             </div>
+
 
         </div>
     </Authenticated>

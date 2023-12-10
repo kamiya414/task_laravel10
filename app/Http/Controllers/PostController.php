@@ -6,6 +6,7 @@ use App\Http\Requests\PostRequest;
 use Inertia\Inertia;
 use App\Models\Post;
 use Redirect;
+use App\Models\Category;
 
 class PostController extends Controller
 {
@@ -17,13 +18,16 @@ class PostController extends Controller
     
     public function show(Post $post)
     {
-        return inertia("Post/Show", ["post" => $post]);
+        // Eagerローディングを使って、Controller内でリレーション先のデータを紐付ける
+        return inertia("Post/Show", ["post" => $post->load('category')]);
     }
-    
-    public function create()
+
+    public function create(Category $category)
     {
-        return inertia("Post/Create");
+        return inertia("Post/Create",["categories" => $category->get()]);
     }
+
+
     
     public function store(PostRequest $request, Post $post)
     {
@@ -49,4 +53,6 @@ class PostController extends Controller
         $post->delete();
         return Redirect::route('post.index');
     }
+    
+
 }
