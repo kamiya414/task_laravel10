@@ -1,12 +1,14 @@
 <script setup>
  import Authenticated from '@/Layouts/AuthenticatedLayout.vue'
- import { Inertia } from '@inertiajs/inertia'
- import {Link} from '@inertiajs/inertia-vue3'
+ import {Link,router} from '@inertiajs/vue3'
 
- const {posts} = defineProps({posts: Array})
+ const {posts} = defineProps({
+     posts: Array
+     
+ })
 
  const destroy = ({id}) => {
-    Inertia.delete(route('post.delete', {id: id}), {
+    router.delete(route('post.delete', {id: id}), {
         onBefore: () => confirm('削除しますが、よろしいですか？')
     })
  }

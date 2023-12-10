@@ -1,6 +1,6 @@
 <script setup>
   import Authenticated from '@/Layouts/AuthenticatedLayout.vue';
-  import { useForm } from '@inertiajs/inertia-vue3';
+  import { useForm } from '@inertiajs/vue3';
 
   const { categories } = defineProps({
       categories: Array
@@ -9,7 +9,7 @@
   const form = useForm({
       title: "",
       body: "",
-      category_id: categories[0].id　　/* 追記 */
+      category_id: categories[0].id/* 追記 */
   })
 
 </script>

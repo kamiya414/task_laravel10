@@ -16,11 +16,12 @@ class PostController extends Controller
         return inertia("Post/Index",["posts" => $post->get()]);
     }
     
-    public function show(Post $post)
+ public function show(Post $post)
     {
         // Eagerローディングを使って、Controller内でリレーション先のデータを紐付ける
         return inertia("Post/Show", ["post" => $post->load('category')]);
     }
+    
 
     public function create(Category $category)
     {
